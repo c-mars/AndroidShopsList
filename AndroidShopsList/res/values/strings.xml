@@ -9,4 +9,6 @@
 	<string name="phone_label">call:</string>
 	<string name="address">Address</string>
 	<string name="showMap">Show map</string>
+	
+	<string name="connectionError">Network connection error</string>
 </resources>

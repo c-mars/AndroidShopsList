@@ -1,24 +1,30 @@
-package c.mars.androidshopslist;
+package c.mars.androidshopslist.fragments;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import network.NetworkUtils;
+import network.StoresApiHelper;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
+import c.mars.androidshopslist.MainActivity;
+import c.mars.androidshopslist.R;
 import c.mars.androidshopslist.adapters.StoresListAdapter;
 import c.mars.androidshopslist.models.Store;
 
 public class StoresListFragment extends ListFragment {
 	
 	private StoresListAdapter adapter;
+	private StoresApiHelper apiHelper;
 
 	@Override  
 	public void onListItemClick(ListView l, View v, int position, long id) {  
-
+//  TODO: implement opening detailed fragment
 	}  
 
 	@Override  
@@ -30,8 +36,14 @@ public class StoresListFragment extends ListFragment {
 				new Store("Shop3", "Los Angeles", "353293253425")
 				));
 		adapter = new StoresListAdapter(inflater.getContext(), shops);
-
+		apiHelper = new StoresApiHelper();
 		
+		MainActivity activity = (MainActivity) getActivity();
+		if (NetworkUtils.checkConnection(activity)) {
+			apiHelper.getStores();
+		} else {
+			Toast.makeText(activity, getString(R.string.connectionError), Toast.LENGTH_SHORT).show();
+		}
 		
 		setListAdapter(adapter);  
 		

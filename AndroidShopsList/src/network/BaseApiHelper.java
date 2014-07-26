@@ -2,45 +2,83 @@ package network;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 
+import android.os.AsyncTask;
 import android.util.Log;
 
 public class BaseApiHelper {
-	public static String getJSON(String url, int timeout) {
+	private static final String TAG = "BaseApiHelper";
+	
+	protected void getHttpResponse(String urlString) {
+		new DownloadTask().execute(urlString);
+	}
+	
+	private class DownloadTask extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+            return downloadUrl(urls[0]);
+        }
+        
+        @Override
+        protected void onPostExecute(String result) {
+        	Log.d(TAG, "HttpResponse is " + result);
+       }
+    }
+	
+	private String downloadUrl(String urlString) {
+	    InputStream is = null;
+	    String contentAsString = null;
+	    
 	    try {
-	        URL u = new URL(url);
-	        HttpURLConnection c = (HttpURLConnection) u.openConnection();
-	        c.setRequestMethod("GET");
-//	        c.setRequestProperty("Content-length", "0");
-	        c.setUseCaches(false);
-	        c.setAllowUserInteraction(false);
-	        c.setConnectTimeout(timeout);
-	        c.setReadTimeout(timeout);
-	        c.connect();
-	        int status = c.getResponseCode();
+	        URL url = new URL(urlString);
+	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+	        conn.setReadTimeout(10000 /* milliseconds */);
+	        conn.setConnectTimeout(15000 /* milliseconds */);
+	        conn.setRequestMethod("GET");
+	        conn.setDoInput(true);
+	        // Starts the query
+	        conn.connect();
+	        int response = conn.getResponseCode();
+	        Log.d(TAG, "The response is: " + response);
+	        is = conn.getInputStream();
 
-	        switch (status) {
-	            case 200:
-	            case 201:
-	                BufferedReader br = new BufferedReader(new InputStreamReader(c.getInputStream()));
-	                StringBuilder sb = new StringBuilder();
-	                String line;
-	                while ((line = br.readLine()) != null) {
-	                    sb.append(line+"\n");
-	                }
-	                br.close();
-	                return sb.toString();
-	        }
-
-	    } catch (MalformedURLException ex) {
-	    	Log.e(getClass().getName(), ex.getStackTrace().toString());
-	    } catch (IOException ex) {
-	        Log.e(getClass().getName(), ex.getStackTrace().toString());
+	        // Convert the InputStream into a string
+	        contentAsString = readIt(is);
+	        
+	    } catch (UnsupportedEncodingException ex) {
+	    	ex.printStackTrace();
+	    } catch (IOException ex ) {
+	    	ex.printStackTrace();
+		} finally {
+	        if (is != null) {
+	            try {
+					is.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+	        } 
 	    }
-	    return null;
+	    
+	    return contentAsString;
+	}
+	
+	public String readIt(InputStream stream) throws IOException, UnsupportedEncodingException {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+        StringBuilder out = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            out.append(line);
+        }
+        reader.close();
+	    
+	    return out.toString();
 	}
 }
