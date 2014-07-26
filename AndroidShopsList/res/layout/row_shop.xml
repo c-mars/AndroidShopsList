@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+    
+    <TextView android:id="@+id/phone"
+        android:text="phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"/>
+    
+    <TextView android:id="@+id/name"
+        android:text="name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/phone"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"/>
+
+    <Button android:id="@+id/showMap"
+        android:text="showMap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/phone"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"/>
+    
+    <TextView android:id="@+id/address"
+        android:text="address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/showMap"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"/>
+    
+</RelativeLayout>
