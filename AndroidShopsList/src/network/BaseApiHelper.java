@@ -17,19 +17,32 @@ import android.util.Log;
 public class BaseApiHelper {
 	private static final String TAG = "BaseApiHelper";
 	
-	protected void getHttpResponse(String urlString) {
-		new DownloadTask().execute(urlString);
+	public interface HttpResponseHandler {
+		public void onHttpResponse(String response);
+	}
+	
+	protected void getHttpResponse(String urlString, HttpResponseHandler responseHandler) {
+		new DownloadTask(responseHandler).execute(urlString);
 	}
 	
 	private class DownloadTask extends AsyncTask<String, Void, String> {
-        @Override
+        
+		private HttpResponseHandler responseHandler;
+		
+		public DownloadTask(HttpResponseHandler responseHandler) {
+        	this.responseHandler = responseHandler;
+        }
+		
+		@Override
         protected String doInBackground(String... urls) {
             return downloadUrl(urls[0]);
         }
         
         @Override
         protected void onPostExecute(String result) {
-        	Log.d(TAG, "HttpResponse is " + result);
+        	if (responseHandler != null) {
+        		responseHandler.onHttpResponse(result);
+        	}
        }
     }
 	

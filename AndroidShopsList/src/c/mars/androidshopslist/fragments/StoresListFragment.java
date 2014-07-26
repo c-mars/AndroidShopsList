@@ -3,10 +3,12 @@ package c.mars.androidshopslist.fragments;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import network.BaseApiHelper.HttpResponseHandler;
 import network.NetworkUtils;
 import network.StoresApiHelper;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,7 @@ import c.mars.androidshopslist.models.Store;
 
 public class StoresListFragment extends ListFragment {
 	
+	private static final String TAG = "StoresListFragment";
 	private StoresListAdapter adapter;
 	private StoresApiHelper apiHelper;
 
@@ -40,7 +43,14 @@ public class StoresListFragment extends ListFragment {
 		
 		MainActivity activity = (MainActivity) getActivity();
 		if (NetworkUtils.checkConnection(activity)) {
-			apiHelper.getStores();
+			apiHelper.getStores( new HttpResponseHandler() {
+				
+				@Override
+				public void onHttpResponse(String response) {
+					Log.d(TAG, response);
+//					adapter = new StoresListAdapter(inflater.getContext(), shops);
+				}
+			});
 		} else {
 			Toast.makeText(activity, getString(R.string.connectionError), Toast.LENGTH_SHORT).show();
 		}
