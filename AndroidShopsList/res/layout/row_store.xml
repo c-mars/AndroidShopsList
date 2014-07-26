@@ -15,7 +15,7 @@
         android:text="name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/row_shop_name_margin_bottom"
+        android:layout_marginBottom="@dimen/row_store_name_margin_bottom"
         android:layout_toLeftOf="@id/phone"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"/>
@@ -37,7 +37,5 @@
         android:layout_below="@id/name"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"/>
-    
-    
-    
+
 </RelativeLayout>

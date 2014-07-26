@@ -1,7 +1,10 @@
 package c.mars.androidshopslist;
 
 import c.mars.androidshopslist.R;
+import c.mars.androidshopslist.fragments.StoreDetailsFragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,5 +37,14 @@ public class MainActivity extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+    
+    public void showDetailsFragment() {
+    	StoreDetailsFragment detailsFragment = new StoreDetailsFragment();
+		FragmentManager fragmentManager = getSupportFragmentManager();
+	    fragmentManager.beginTransaction()
+	    		.replace(R.id.listFragment, detailsFragment)
+	    		.addToBackStack(null)
+	    		.commit(); 
     }
 }

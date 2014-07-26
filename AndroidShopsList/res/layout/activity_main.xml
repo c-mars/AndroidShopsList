@@ -9,8 +9,16 @@
     tools:context="c.mars.androidshopslist.MainActivity" >
 
     <fragment android:name="c.mars.androidshopslist.fragments.StoresListFragment"
-            android:id="@+id/fragment_shopslist"
+            android:id="@+id/listFragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/listFragment"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

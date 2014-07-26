@@ -25,7 +25,7 @@ public class StoresListAdapter extends ArrayAdapter<Store> {
 	}
 	
 	public StoresListAdapter(Context context, ArrayList<Store> values) {
-		super(context, R.layout.row_shop, values);
+		super(context, R.layout.row_store, values);
 		
 		this.context = context;
 		this.values = values;
@@ -39,7 +39,7 @@ public class StoresListAdapter extends ArrayAdapter<Store> {
 	    ViewHolder holder;
 	    
 	    if (convertView == null) {
-	    	convertView = inflater.inflate(R.layout.row_shop, parent, false);
+	    	convertView = inflater.inflate(R.layout.row_store, parent, false);
 	    	holder = new ViewHolder();
 	    	holder.name = (TextView) convertView.findViewById(R.id.name);
 	    	holder.address = (TextView) convertView.findViewById(R.id.address);
