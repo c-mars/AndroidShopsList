@@ -33,22 +33,27 @@ public class StoresListFragment extends ListFragment {
 	@Override  
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,  Bundle savedInstanceState) {  
 		
-		ArrayList<Store> shops = new ArrayList<Store>( Arrays.asList(
+		ArrayList<Store> stores = new ArrayList<Store>( Arrays.asList(
 				new Store("Shop1", "Moscow", "2375932573"),
 				new Store("Shop2", "New York", "769753697"),
 				new Store("Shop3", "Los Angeles", "353293253425")
 				));
-		adapter = new StoresListAdapter(inflater.getContext(), shops);
+		adapter = new StoresListAdapter(inflater.getContext(), stores);
 		apiHelper = new StoresApiHelper();
 		
 		MainActivity activity = (MainActivity) getActivity();
 		if (NetworkUtils.checkConnection(activity)) {
+			
+//			Because we don't need pagination or multiple calls to handler, we create it in-place
 			apiHelper.getStores( new HttpResponseHandler() {
 				
 				@Override
 				public void onHttpResponse(String response) {
 					Log.d(TAG, response);
-//					adapter = new StoresListAdapter(inflater.getContext(), shops);
+					ArrayList<Store> stores = apiHelper.parseStoresResponse(response);
+					adapter.clear();
+					adapter.addAll(stores);
+					adapter.notifyDataSetChanged();
 				}
 			});
 		} else {

@@ -4,6 +4,7 @@ import c.mars.androidshopslist.models.Store;
 import c.mars.androidshopslist.R;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -58,4 +59,12 @@ public class StoresListAdapter extends ArrayAdapter<Store> {
 	    
 	    return convertView;
 	  }
+	
+	public void addAll(Collection<? extends Store> collection) {
+		values.addAll(collection);
+	}
+	
+	public void clear() {
+		values.clear();
+	}
 }
