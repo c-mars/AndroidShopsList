@@ -1,4 +1,4 @@
-package c.mars.androidshopslist.models;
+package c.mars.ashopslist.models;
 
 import org.json.JSONException;
 import org.json.JSONObject;

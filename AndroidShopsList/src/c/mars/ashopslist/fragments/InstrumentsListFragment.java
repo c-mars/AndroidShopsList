@@ -1,10 +1,7 @@
-package c.mars.androidshopslist.fragments;
+package c.mars.ashopslist.fragments;
 
 import java.util.ArrayList;
 
-import network.BaseApiHelper.HttpResponseHandler;
-import network.InstrumentsApiHelper;
-import network.NetworkUtils;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -15,9 +12,12 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 import c.mars.androidshopslist.R;
-import c.mars.androidshopslist.adapters.InstrumentsListAdapter;
-import c.mars.androidshopslist.models.Instrument;
 import c.mars.ashopslist.MainActivity;
+import c.mars.ashopslist.adapters.InstrumentsListAdapter;
+import c.mars.ashopslist.models.Instrument;
+import c.mars.ashopslist.network.InstrumentsApiHelper;
+import c.mars.ashopslist.network.NetworkUtils;
+import c.mars.ashopslist.network.BaseApiHelper.HttpResponseHandler;
 
 public class InstrumentsListFragment extends ListFragment {
 

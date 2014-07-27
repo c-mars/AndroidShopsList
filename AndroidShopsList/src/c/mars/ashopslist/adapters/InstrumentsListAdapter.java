@@ -1,4 +1,4 @@
-package c.mars.androidshopslist.adapters;
+package c.mars.ashopslist.adapters;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import c.mars.androidshopslist.R;
-import c.mars.androidshopslist.models.Instrument;
+import c.mars.ashopslist.models.Instrument;
 
 public class InstrumentsListAdapter extends ArrayAdapter<Instrument> {
 

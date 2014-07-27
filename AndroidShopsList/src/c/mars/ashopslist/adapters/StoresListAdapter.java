@@ -1,7 +1,7 @@
-package c.mars.androidshopslist.adapters;
+package c.mars.ashopslist.adapters;
 
-import c.mars.androidshopslist.models.Store;
 import c.mars.androidshopslist.R;
+import c.mars.ashopslist.models.Store;
 
 import java.util.ArrayList;
 import java.util.Collection;

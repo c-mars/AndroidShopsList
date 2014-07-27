@@ -1,10 +1,7 @@
-package c.mars.androidshopslist.fragments;
+package c.mars.ashopslist.fragments;
 
 import java.util.ArrayList;
 
-import network.BaseApiHelper.HttpResponseHandler;
-import network.NetworkUtils;
-import network.StoresApiHelper;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
@@ -14,9 +11,12 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 import c.mars.androidshopslist.R;
-import c.mars.androidshopslist.adapters.StoresListAdapter;
-import c.mars.androidshopslist.models.Store;
 import c.mars.ashopslist.MainActivity;
+import c.mars.ashopslist.adapters.StoresListAdapter;
+import c.mars.ashopslist.models.Store;
+import c.mars.ashopslist.network.NetworkUtils;
+import c.mars.ashopslist.network.StoresApiHelper;
+import c.mars.ashopslist.network.BaseApiHelper.HttpResponseHandler;
 
 public class StoresListFragment extends ListFragment {
 	

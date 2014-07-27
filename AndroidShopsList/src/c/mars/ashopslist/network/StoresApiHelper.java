@@ -1,4 +1,4 @@
-package network;
+package c.mars.ashopslist.network;
 
 import java.util.ArrayList;
 
@@ -6,8 +6,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import c.mars.androidshopslist.models.Store;
 import c.mars.ashopslist.Globals;
+import c.mars.ashopslist.models.Store;
 
 
 public class StoresApiHelper extends BaseApiHelper {

@@ -1,4 +1,4 @@
-package c.mars.androidshopslist.fragments;
+package c.mars.ashopslist.fragments;
 
 import com.google.android.gms.maps.GoogleMap;
 
@@ -15,9 +15,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 import c.mars.androidshopslist.R;
-import c.mars.androidshopslist.models.Instrument;
-import c.mars.androidshopslist.models.Store;
 import c.mars.ashopslist.MainActivity;
+import c.mars.ashopslist.models.Instrument;
+import c.mars.ashopslist.models.Store;
 
 public class StoreDetailsFragment extends Fragment {
 	

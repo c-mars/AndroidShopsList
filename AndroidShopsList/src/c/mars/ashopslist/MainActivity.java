@@ -8,9 +8,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import c.mars.androidshopslist.R;
-import c.mars.androidshopslist.fragments.InstrumentsListFragment;
-import c.mars.androidshopslist.fragments.StoreDetailsFragment;
-import c.mars.androidshopslist.fragments.StoresListFragment;
+import c.mars.ashopslist.fragments.InstrumentsListFragment;
+import c.mars.ashopslist.fragments.StoreDetailsFragment;
+import c.mars.ashopslist.fragments.StoresListFragment;
 
 
 public class MainActivity extends ActionBarActivity {

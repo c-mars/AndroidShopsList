@@ -1,4 +1,4 @@
-package network;
+package c.mars.ashopslist.network;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
