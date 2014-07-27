@@ -6,16 +6,14 @@ import java.util.Arrays;
 import network.BaseApiHelper.HttpResponseHandler;
 import network.NetworkUtils;
 import network.StoresApiHelper;
+import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 import c.mars.androidshopslist.MainActivity;
 import c.mars.androidshopslist.R;
@@ -25,27 +23,45 @@ import c.mars.androidshopslist.models.Store;
 public class StoresListFragment extends ListFragment {
 	
 	private static final String TAG = "StoresListFragment";
+	private ArrayList<Store> stores = new ArrayList<Store>();
 	private StoresListAdapter adapter;
 	private StoresApiHelper apiHelper;
-	private ProgressBar progressBar;
-
+	
 	@Override  
 	public void onListItemClick(ListView l, View v, int position, long id) {  
 //  TODO: implement opening detailed fragment
 		MainActivity a = (MainActivity)getActivity();
 		a.showDetailsFragment();
-	}  
-
+	} 
+	
+//	This test data used for first prototyping
+	@SuppressWarnings("unused")
+	private void fillAdapterWithTestData(Context context) {
+		stores = new ArrayList<Store>( Arrays.asList(
+				new Store("Shop1", "Moscow", "2375932573"),
+				new Store("Shop2", "New York", "769753697"),
+				new Store("Shop3", "Los Angeles", "353293253425")
+				));
+		addAllStoresToAdapter();
+	}
+	
+//	Update or create adapter if necessary
+	private void addAllStoresToAdapter() {
+		if (adapter == null) {
+			adapter = new StoresListAdapter(getActivity(), stores);
+			setListAdapter(adapter);
+		} 
+			else {
+			adapter.clear();
+			adapter.addAll(stores);
+		}
+		
+		adapter.notifyDataSetChanged();
+	}
+	
 	@Override  
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,  Bundle savedInstanceState) {  
-		
-//		ArrayList<Store> stores = new ArrayList<Store>( Arrays.asList(
-//				new Store("Shop1", "Moscow", "2375932573"),
-//				new Store("Shop2", "New York", "769753697"),
-//				new Store("Shop3", "Los Angeles", "353293253425")
-//				));
-//		adapter = new StoresListAdapter(inflater.getContext(), stores);
-		progressBar = (ProgressBar)container.findViewById(R.id.progressBar);
+
 		apiHelper = new StoresApiHelper();
 		
 		MainActivity activity = (MainActivity) getActivity();
@@ -57,20 +73,13 @@ public class StoresListFragment extends ListFragment {
 				@Override
 				public void onHttpResponse(String response) {
 					Log.d(TAG, response);
-					ArrayList<Store> stores = apiHelper.parseStoresResponse(response);
-					adapter.clear();
-					adapter.addAll(stores);
-					adapter.notifyDataSetChanged();
-					if (progressBar != null) {
-						progressBar.setVisibility(View.GONE);
-					}
+					stores = apiHelper.parseStoresResponse(response);
+					addAllStoresToAdapter();
 				}
 			});
 		} else {
 			Toast.makeText(activity, getString(R.string.connectionError), Toast.LENGTH_SHORT).show();
 		}
-		
-		setListAdapter(adapter);  
 		
 		return super.onCreateView(inflater, container, savedInstanceState);  
 	} 

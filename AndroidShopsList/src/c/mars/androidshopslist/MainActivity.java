@@ -1,14 +1,13 @@
 package c.mars.androidshopslist;
 
-import c.mars.androidshopslist.R;
-import c.mars.androidshopslist.fragments.StoreDetailsFragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.ActionBarActivity;
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+import c.mars.androidshopslist.fragments.StoreDetailsFragment;
+import c.mars.androidshopslist.fragments.StoresListFragment;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -17,6 +16,11 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+//        android:name="c.mars.androidshopslist.fragments.StoresListFragment"
+        StoresListFragment newFragment = new StoresListFragment();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.add(R.id.mainFragment, newFragment).commit();
     }
 
 
@@ -43,7 +47,7 @@ public class MainActivity extends ActionBarActivity {
     	StoreDetailsFragment detailsFragment = new StoreDetailsFragment();
 		FragmentManager fragmentManager = getSupportFragmentManager();
 	    fragmentManager.beginTransaction()
-	    		.replace(R.id.listFragment, detailsFragment)
+	    		.replace(R.id.mainFragment, detailsFragment)
 	    		.addToBackStack(null)
 	    		.commit(); 
     }

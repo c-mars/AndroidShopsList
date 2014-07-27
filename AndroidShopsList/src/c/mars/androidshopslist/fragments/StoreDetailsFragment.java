@@ -12,8 +12,7 @@ public class StoreDetailsFragment extends Fragment {
 	
 	@Override  
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,  Bundle savedInstanceState) {  
-		View rootView = inflater.inflate(R.layout.fragment_storedetails, container, false);
-		            
-		return rootView; //super.onCreateView(inflater, container, savedInstanceState);  
+		View rootView = inflater.inflate(R.layout.fragment_storedetails, container, false);    
+		return rootView;  
 	} 
 }
