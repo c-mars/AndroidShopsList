@@ -6,6 +6,6 @@
 
     <dimen name="row_store_name_margin_bottom">8dp</dimen>
     <dimen name="fragment_storedetails_margin">8dp</dimen>
-    <dimen name="fragment_storedetails_height">200dp</dimen>
+    <dimen name="fragment_storedetails_height">100dp</dimen>
     
 </resources>

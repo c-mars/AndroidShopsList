@@ -11,4 +11,5 @@
 	<string name="showMap">Show map</string>
 	
 	<string name="connectionError">Network connection error</string>
+	<string name="storeDetailsReadError">Can\'t get store details</string>
 </resources>

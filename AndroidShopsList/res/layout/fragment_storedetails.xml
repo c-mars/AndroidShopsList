@@ -32,10 +32,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
             android:text="name" />
 
-        <TextView
+        	<TextView
             android:id="@+id/instrumentsCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,9 +47,9 @@
             android:id="@+id/showMap"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            
             android:layout_alignParentRight="true"
-            android:layout_below="@id/phone"
+            android:layout_alignParentBottom="true"
             android:enabled="false"
             android:text="showMap" />
 
@@ -63,6 +62,13 @@
             android:layout_below="@id/nameLayout"
             android:layout_toLeftOf="@id/showMap"
             android:text="address" />
-</RelativeLayout>
+	</RelativeLayout>
+
+    <FrameLayout 
+        android:id="@+id/listFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        
+    </FrameLayout>
 
 </LinearLayout>

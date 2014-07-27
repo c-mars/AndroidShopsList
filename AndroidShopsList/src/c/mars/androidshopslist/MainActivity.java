@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import c.mars.androidshopslist.R;
 import c.mars.androidshopslist.fragments.StoreDetailsFragment;
 import c.mars.androidshopslist.fragments.StoresListFragment;
 
@@ -43,9 +44,10 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
     
-    public void showDetailsFragment() {
+    public void showDetailsFragment(Bundle args) {
     	StoreDetailsFragment detailsFragment = new StoreDetailsFragment();
-		FragmentManager fragmentManager = getSupportFragmentManager();
+		detailsFragment.setArguments(args);
+    	FragmentManager fragmentManager = getSupportFragmentManager();
 	    fragmentManager.beginTransaction()
 	    		.replace(R.id.mainFragment, detailsFragment)
 	    		.addToBackStack(null)

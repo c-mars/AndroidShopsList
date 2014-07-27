@@ -67,4 +67,8 @@ public class StoresListAdapter extends ArrayAdapter<Store> {
 	public void clear() {
 		values.clear();
 	}
+	
+	public Store getItem(int position) {
+		return values.get(position);
+	}
 }

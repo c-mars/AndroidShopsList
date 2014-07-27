@@ -23,6 +23,7 @@ import c.mars.androidshopslist.models.Store;
 public class StoresListFragment extends ListFragment {
 	
 	private static final String TAG = "StoresListFragment";
+	
 	private ArrayList<Store> stores = new ArrayList<Store>();
 	private StoresListAdapter adapter;
 	private StoresApiHelper apiHelper;
@@ -30,8 +31,13 @@ public class StoresListFragment extends ListFragment {
 	@Override  
 	public void onListItemClick(ListView l, View v, int position, long id) {  
 //  TODO: implement opening detailed fragment
-		MainActivity a = (MainActivity)getActivity();
-		a.showDetailsFragment();
+		Store selectedStore = adapter.getItem((int) id);
+		if (selectedStore != null) {
+			MainActivity a = (MainActivity)getActivity();
+			Bundle args = new Bundle();
+			args.putParcelable(Store.TAGS.STORE, selectedStore);
+			a.showDetailsFragment(args);
+		}
 	} 
 	
 //	This test data used for first prototyping
