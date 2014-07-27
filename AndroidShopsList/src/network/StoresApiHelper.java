@@ -6,8 +6,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import c.mars.androidshopslist.Globals;
 import c.mars.androidshopslist.models.Store;
+import c.mars.ashopslist.Globals;
 
 
 public class StoresApiHelper extends BaseApiHelper {

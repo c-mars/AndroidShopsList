@@ -14,10 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
-import c.mars.androidshopslist.MainActivity;
 import c.mars.androidshopslist.R;
 import c.mars.androidshopslist.adapters.InstrumentsListAdapter;
 import c.mars.androidshopslist.models.Instrument;
+import c.mars.ashopslist.MainActivity;
 
 public class InstrumentsListFragment extends ListFragment {
 

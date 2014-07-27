@@ -1,5 +1,7 @@
 package c.mars.androidshopslist.fragments;
 
+import com.google.android.gms.maps.GoogleMap;
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -12,15 +14,16 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-import c.mars.androidshopslist.MainActivity;
 import c.mars.androidshopslist.R;
 import c.mars.androidshopslist.models.Instrument;
 import c.mars.androidshopslist.models.Store;
+import c.mars.ashopslist.MainActivity;
 
 public class StoreDetailsFragment extends Fragment {
 	
 	private Store store;
 	private TextView instrumentsCount;
+	private GoogleMap map;
 	
 	@Override  
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,  Bundle savedInstanceState) {  

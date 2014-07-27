@@ -3,7 +3,7 @@ package c.mars.androidshopslist.models;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import c.mars.androidshopslist.Globals;
+import c.mars.ashopslist.Globals;
 import android.location.Location;
 import android.os.Parcel;
 import android.os.Parcelable;

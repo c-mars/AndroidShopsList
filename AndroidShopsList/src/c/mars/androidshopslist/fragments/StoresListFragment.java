@@ -13,10 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
-import c.mars.androidshopslist.MainActivity;
 import c.mars.androidshopslist.R;
 import c.mars.androidshopslist.adapters.StoresListAdapter;
 import c.mars.androidshopslist.models.Store;
+import c.mars.ashopslist.MainActivity;
 
 public class StoresListFragment extends ListFragment {
 	
