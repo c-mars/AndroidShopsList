@@ -25,11 +25,6 @@ public class StoreDetailsFragment extends Fragment {
 	
 	private Store store;
 	private TextView instrumentsCount;
-	private GoogleMap map;
-	
-//	TODO: test
-	static final LatLng HAMBURG = new LatLng(53.558, 9.927);
-	static final LatLng KIEL = new LatLng(53.551, 9.993);
 	
 	@Override  
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,  Bundle savedInstanceState) {  

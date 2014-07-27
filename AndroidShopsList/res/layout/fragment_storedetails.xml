@@ -52,7 +52,6 @@
             
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:enabled="false"
             android:text="showMap" />
 
         <TextView

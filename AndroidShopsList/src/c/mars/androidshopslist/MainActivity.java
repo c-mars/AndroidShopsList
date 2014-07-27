@@ -9,14 +9,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import c.mars.androidshopslist.R;
 import c.mars.ashopslist.fragments.InstrumentsListFragment;
+import c.mars.ashopslist.fragments.StoresMapFragment;
 import c.mars.ashopslist.fragments.StoreDetailsFragment;
 import c.mars.ashopslist.fragments.StoresListFragment;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 
 public class MainActivity extends ActionBarActivity {
-
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +74,7 @@ public class MainActivity extends ActionBarActivity {
     }
     
     public void showMapFragment(Bundle args) {
-    	SupportMapFragment mapFragment = new SupportMapFragment();
+    	StoresMapFragment mapFragment = new StoresMapFragment();
 		mapFragment.setArguments(args);
     	FragmentManager fragmentManager = getSupportFragmentManager();
 	    fragmentManager.beginTransaction()
