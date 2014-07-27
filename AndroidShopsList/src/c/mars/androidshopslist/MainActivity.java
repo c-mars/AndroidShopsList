@@ -1,4 +1,4 @@
-package c.mars.ashopslist;
+package c.mars.androidshopslist;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

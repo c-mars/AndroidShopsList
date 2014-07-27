@@ -16,8 +16,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import c.mars.androidshopslist.MainActivity;
 import c.mars.androidshopslist.R;
-import c.mars.ashopslist.MainActivity;
 import c.mars.ashopslist.models.Instrument;
 import c.mars.ashopslist.models.Store;
 

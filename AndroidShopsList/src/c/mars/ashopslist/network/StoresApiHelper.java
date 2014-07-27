@@ -6,7 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import c.mars.ashopslist.Globals;
+import c.mars.androidshopslist.Globals;
 import c.mars.ashopslist.models.Store;
 
 
