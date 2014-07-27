@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
+import c.mars.androidshopslist.MainActivity;
 import c.mars.androidshopslist.R;
 import c.mars.androidshopslist.adapters.InstrumentsListAdapter;
 import c.mars.androidshopslist.models.Instrument;
@@ -44,12 +45,16 @@ private static final String TAG = "StoresListFragment";
 			adapter.addAll(instruments);
 		}
 		
+		MainActivity activity = (MainActivity) getActivity();
+		activity.updateInstrumentsCount(instruments.size()); ;
 		adapter.notifyDataSetChanged();
 	}
 	
 	@Override  
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,  Bundle savedInstanceState) {  
 		context = inflater.getContext();
+//		Custom layout to include header in list fragment
+		View view = inflater.inflate(R.layout.fragment_instrumentslist, container, false);
 		
 		Bundle args = getArguments();
 		if (args != null && args.containsKey(Instrument.TAGS.STOREID)) {
@@ -75,7 +80,7 @@ private static final String TAG = "StoresListFragment";
 			Toast.makeText(context, getString(R.string.unknownStoreId), Toast.LENGTH_SHORT).show();
 		}
 		
-		return super.onCreateView(inflater, container, savedInstanceState);  
+		return view; //super.onCreateView(inflater, container, savedInstanceState);  
 	} 
-
+	
 }

@@ -15,6 +15,7 @@ import c.mars.androidshopslist.models.Store;
 public class StoreDetailsFragment extends Fragment {
 	
 	private Store store;
+	private TextView instrumentsCount;
 	
 	@Override  
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,  Bundle savedInstanceState) {  
@@ -31,6 +32,10 @@ public class StoreDetailsFragment extends Fragment {
 			TextView address = (TextView)rootView.findViewById(R.id.address);
 			address.setText(store.address);
 			
+//			Will be updated after instruments response handled
+			instrumentsCount = (TextView)rootView.findViewById(R.id.instrumentsCount);
+			instrumentsCount.setText("");
+			
 			Bundle fragArgs = new Bundle();
 			fragArgs.putInt(Instrument.TAGS.STOREID, store.id);
 			MainActivity activity = (MainActivity)getActivity();
@@ -41,4 +46,10 @@ public class StoreDetailsFragment extends Fragment {
 		
 		return rootView;  
 	} 
+	
+	public void updateInstrumentsCount(Integer count) {
+		if (instrumentsCount != null) {
+			instrumentsCount.setText(getString(R.string.instrumentsCount) + " " + count.toString());
+		}
+	}
 }

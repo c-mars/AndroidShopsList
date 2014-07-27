@@ -1,12 +1,10 @@
 package c.mars.androidshopslist.fragments;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import network.BaseApiHelper.HttpResponseHandler;
 import network.NetworkUtils;
 import network.StoresApiHelper;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;

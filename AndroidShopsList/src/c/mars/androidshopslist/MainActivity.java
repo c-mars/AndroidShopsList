@@ -1,6 +1,7 @@
 package c.mars.androidshopslist;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
@@ -62,5 +63,13 @@ public class MainActivity extends ActionBarActivity {
 	    		.replace(R.id.listFragment, instrumentsListFragment)
 	    		.addToBackStack(null)
 	    		.commit();
+    }
+    
+    public void updateInstrumentsCount(Integer count) {
+    	Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.mainFragment);
+    	if (fragment instanceof StoreDetailsFragment) {
+    		StoreDetailsFragment storeDetailsFragment = (StoreDetailsFragment)fragment;
+    		storeDetailsFragment.updateInstrumentsCount(count);
+    	}
     }
 }

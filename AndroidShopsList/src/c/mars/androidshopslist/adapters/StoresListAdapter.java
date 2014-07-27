@@ -54,7 +54,7 @@ public class StoresListAdapter extends ArrayAdapter<Store> {
 	    if (shop != null) {
 	    	holder.name.setText(shop.name);
 	    	holder.address.setText(shop.address);
-	    	holder.phone.setText(context.getString(R.string.phone_label) + " " + shop.phone);
+	    	holder.phone.setText(context.getString(R.string.phoneLabel) + " " + shop.phone);
 	    }
 	    
 	    return convertView;
