@@ -1,9 +1,14 @@
 package c.mars.androidshopslist.fragments;
 
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,7 +33,19 @@ public class StoreDetailsFragment extends Fragment {
 			TextView name = (TextView)rootView.findViewById(R.id.name);
 			name.setText(store.name);
 			TextView phone = (TextView)rootView.findViewById(R.id.phone);
-			phone.setText(store.phone);
+			phone.setText(getString(R.string.phoneLabel) + " " + store.phone);
+			phone.setPaintFlags(phone.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+			phone.setTextColor(Color.BLUE);
+			phone.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					Intent intent = new Intent(Intent.ACTION_DIAL); //ACTION_CALL
+					intent.setData(Uri.parse("tel:" + store.phone));
+					startActivity(intent);
+				}
+			});
+			
 			TextView address = (TextView)rootView.findViewById(R.id.address);
 			address.setText(store.address);
 			
