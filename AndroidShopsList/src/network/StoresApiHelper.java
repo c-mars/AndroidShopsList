@@ -11,10 +11,9 @@ import c.mars.androidshopslist.models.Store;
 
 
 public class StoresApiHelper extends BaseApiHelper {
-	private static final String storesUrl = Globals.API_URL + "/stores";
 	
 	public void getStores(HttpResponseHandler responseHandler) {
-		getHttpResponse(storesUrl, responseHandler);
+		getHttpResponse(Globals.STORES_URL, responseHandler);
 	}
 	
 	public ArrayList<Store> parseStoresResponse(String response) {

@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import c.mars.androidshopslist.R;
+import c.mars.androidshopslist.fragments.InstrumentsListFragment;
 import c.mars.androidshopslist.fragments.StoreDetailsFragment;
 import c.mars.androidshopslist.fragments.StoresListFragment;
 
@@ -18,7 +19,6 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-//        android:name="c.mars.androidshopslist.fragments.StoresListFragment"
         StoresListFragment newFragment = new StoresListFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.add(R.id.mainFragment, newFragment).commit();
@@ -52,5 +52,15 @@ public class MainActivity extends ActionBarActivity {
 	    		.replace(R.id.mainFragment, detailsFragment)
 	    		.addToBackStack(null)
 	    		.commit(); 
+    }
+    
+    public void showInstrumentsListFragment(Bundle args) {
+    	InstrumentsListFragment instrumentsListFragment = new InstrumentsListFragment();
+		instrumentsListFragment.setArguments(args);
+    	FragmentManager fragmentManager = getSupportFragmentManager();
+	    fragmentManager.beginTransaction()
+	    		.replace(R.id.listFragment, instrumentsListFragment)
+	    		.addToBackStack(null)
+	    		.commit();
     }
 }

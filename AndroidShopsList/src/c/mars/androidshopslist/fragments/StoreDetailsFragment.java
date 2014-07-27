@@ -1,15 +1,16 @@
 package c.mars.androidshopslist.fragments;
 
-import c.mars.androidshopslist.R;
-import c.mars.androidshopslist.models.Store;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView.FindListener;
 import android.widget.TextView;
 import android.widget.Toast;
+import c.mars.androidshopslist.MainActivity;
+import c.mars.androidshopslist.R;
+import c.mars.androidshopslist.models.Instrument;
+import c.mars.androidshopslist.models.Store;
 
 public class StoreDetailsFragment extends Fragment {
 	
@@ -29,6 +30,11 @@ public class StoreDetailsFragment extends Fragment {
 			phone.setText(store.phone);
 			TextView address = (TextView)rootView.findViewById(R.id.address);
 			address.setText(store.address);
+			
+			Bundle fragArgs = new Bundle();
+			fragArgs.putInt(Instrument.TAGS.STOREID, store.id);
+			MainActivity activity = (MainActivity)getActivity();
+			activity.showInstrumentsListFragment(fragArgs);
 		} else {
 			Toast.makeText(getActivity(), getString(R.string.storeDetailsReadError), Toast.LENGTH_SHORT).show();;
 		}

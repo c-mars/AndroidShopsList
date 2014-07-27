@@ -12,4 +12,5 @@
 	
 	<string name="connectionError">Network connection error</string>
 	<string name="storeDetailsReadError">Can\'t get store details</string>
+	<string name="unknownStoreId">Can\'t get instruments because storeId is unknown</string>
 </resources>

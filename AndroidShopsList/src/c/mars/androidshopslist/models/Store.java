@@ -19,14 +19,20 @@ public class Store implements Parcelable {
 		this.name = name;
 		this.address = address;
 		this.phone = phone;
+		
+		// Default "empty" values
+		this.id = -1;
+		this.location = null;
 	}
 	
-	public Store (String name, String address, String phone, Location location) {
+	public Store (Integer id, String name, String address, String phone, Location location) {
 		this(name, address, phone);
+		this.id = id;
 		this.location = location;
 	}
 	
-	public class TAGS {
+	public static class TAGS {
+		public static final String ID = "id";
 		public static final String NAME = "name";
 		public static final String PHONE = "phone";
 		public static final String ADDRESS = "address";
@@ -37,8 +43,9 @@ public class Store implements Parcelable {
 		public static final String STORE = "store";
 	}
 	
-//	This constructor can fail with JSONException that must be catched somewhere in calling code
+//	This constructor can fail with JSONException that must be handled somewhere in calling code
 	public Store(JSONObject jsonStore) throws JSONException {
+		id = jsonStore.getInt(TAGS.ID);
 		name = jsonStore.getString(TAGS.NAME);
 		phone = jsonStore.getString(TAGS.PHONE);
 		address = jsonStore.getString(TAGS.ADDRESS);
@@ -51,15 +58,16 @@ public class Store implements Parcelable {
 
 	public Store(Parcel in){
 //		Number of fields in parcel string array
-		final int FIELD_COUNT = 5;
+		final int FIELD_COUNT = 6;
         String[] data = new String[FIELD_COUNT];
 
         in.readStringArray(data);
-        name = data[0];
-		phone = data[1];
-		address = data[2];
-		location.setLatitude(Double.parseDouble(data[3]));
-		location.setLongitude(Double.parseDouble(data[4]));
+        id = Integer.parseInt(data[0]);
+        name = data[1];
+		phone = data[2];
+		address = data[3];
+		location.setLatitude(Double.parseDouble(data[4]));
+		location.setLongitude(Double.parseDouble(data[5]));
     }
 	
 	@Override
@@ -71,6 +79,7 @@ public class Store implements Parcelable {
 	public void writeToParcel(Parcel dest, int flags) {
 //		This is fast method, without keys - so pay attention for order of values in array (!) to support updates in this class
 		dest.writeStringArray(new String[] {
+				Integer.toString(id),
 				name,
 				phone,
 				address,

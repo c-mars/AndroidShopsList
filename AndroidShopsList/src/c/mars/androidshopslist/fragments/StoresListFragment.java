@@ -26,7 +26,7 @@ public class StoresListFragment extends ListFragment {
 	
 	private ArrayList<Store> stores = new ArrayList<Store>();
 	private StoresListAdapter adapter;
-	private StoresApiHelper apiHelper;
+	private StoresApiHelper apiHelper = new StoresApiHelper();
 	
 	@Override  
 	public void onListItemClick(ListView l, View v, int position, long id) {  
@@ -39,20 +39,9 @@ public class StoresListFragment extends ListFragment {
 			a.showDetailsFragment(args);
 		}
 	} 
-	
-//	This test data used for first prototyping
-	@SuppressWarnings("unused")
-	private void fillAdapterWithTestData(Context context) {
-		stores = new ArrayList<Store>( Arrays.asList(
-				new Store("Shop1", "Moscow", "2375932573"),
-				new Store("Shop2", "New York", "769753697"),
-				new Store("Shop3", "Los Angeles", "353293253425")
-				));
-		addAllStoresToAdapter();
-	}
-	
+		
 //	Update or create adapter if necessary
-	private void addAllStoresToAdapter() {
+	private void updateStoresAdapter() {
 		if (adapter == null) {
 			adapter = new StoresListAdapter(getActivity(), stores);
 			setListAdapter(adapter);
@@ -68,8 +57,6 @@ public class StoresListFragment extends ListFragment {
 	@Override  
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,  Bundle savedInstanceState) {  
 
-		apiHelper = new StoresApiHelper();
-		
 		MainActivity activity = (MainActivity) getActivity();
 		if (NetworkUtils.checkConnection(activity)) {
 			
@@ -80,7 +67,7 @@ public class StoresListFragment extends ListFragment {
 				public void onHttpResponse(String response) {
 					Log.d(TAG, response);
 					stores = apiHelper.parseStoresResponse(response);
-					addAllStoresToAdapter();
+					updateStoresAdapter();
 				}
 			});
 		} else {
