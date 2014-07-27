@@ -61,7 +61,6 @@ public class MainActivity extends ActionBarActivity {
     	FragmentManager fragmentManager = getSupportFragmentManager();
 	    fragmentManager.beginTransaction()
 	    		.replace(R.id.listFragment, instrumentsListFragment)
-	    		.addToBackStack(null)
 	    		.commit();
     }
     

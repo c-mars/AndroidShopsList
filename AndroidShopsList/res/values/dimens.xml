@@ -4,7 +4,8 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <dimen name="row_store_name_margin_bottom">8dp</dimen>
+    <dimen name="item_store_name_margin_bottom">8dp</dimen>
+    <dimen name="item_store_margin_vertical">8dp</dimen>
     <dimen name="fragment_storedetails_margin">8dp</dimen>
     <dimen name="fragment_storedetails_height">100dp</dimen>
     

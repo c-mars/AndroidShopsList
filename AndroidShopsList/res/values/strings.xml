@@ -13,7 +13,7 @@
 	<string name="headerInsrumentName">Instrument</string>
 	<string name="headerInsrumentPrice">Price</string>
 	<string name="headerInsrumentQuantity">Quantity</string>
-	<string name="instrumentsCount">Available instruments:</string>
+	<string name="instrumentsCount">Instruments:</string>
 	
 	<string name="connectionError">Network connection error</string>
 	<string name="storeDetailsReadError">Can\'t get store details</string>

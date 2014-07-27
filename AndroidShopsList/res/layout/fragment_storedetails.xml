@@ -24,7 +24,7 @@
             android:orientation="vertical"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginBottom="@dimen/row_store_name_margin_bottom"
+            android:layout_marginBottom="@dimen/item_store_name_margin_bottom"
             android:layout_toLeftOf="@id/phone">
             
             <TextView
@@ -32,6 +32,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:textStyle="bold"
+            android:textAppearance="@android:style/TextAppearance.Large"
             android:text="name" />
 
         	<TextView
@@ -61,6 +63,7 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@id/nameLayout"
             android:layout_toLeftOf="@id/showMap"
+            android:textStyle="italic"
             android:text="address" />
 	</RelativeLayout>
 
