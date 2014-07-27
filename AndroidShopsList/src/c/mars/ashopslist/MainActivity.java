@@ -12,6 +12,8 @@ import c.mars.ashopslist.fragments.InstrumentsListFragment;
 import c.mars.ashopslist.fragments.StoreDetailsFragment;
 import c.mars.ashopslist.fragments.StoresListFragment;
 
+import com.google.android.gms.maps.SupportMapFragment;
+
 
 public class MainActivity extends ActionBarActivity {
 
@@ -61,6 +63,15 @@ public class MainActivity extends ActionBarActivity {
     	FragmentManager fragmentManager = getSupportFragmentManager();
 	    fragmentManager.beginTransaction()
 	    		.replace(R.id.listFragment, instrumentsListFragment)
+	    		.commit();
+    }
+    
+    public void showMapFragment(Bundle args) {
+    	SupportMapFragment mapFragment = new SupportMapFragment();
+		mapFragment.setArguments(args);
+    	FragmentManager fragmentManager = getSupportFragmentManager();
+	    fragmentManager.beginTransaction()
+	    		.replace(R.id.listFragment, mapFragment)
 	    		.commit();
     }
     

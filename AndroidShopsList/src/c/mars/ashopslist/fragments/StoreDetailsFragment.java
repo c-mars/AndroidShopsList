@@ -1,6 +1,7 @@
 package c.mars.ashopslist.fragments;
 
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.LatLng;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import c.mars.androidshopslist.R;
@@ -24,6 +26,10 @@ public class StoreDetailsFragment extends Fragment {
 	private Store store;
 	private TextView instrumentsCount;
 	private GoogleMap map;
+	
+//	TODO: test
+	static final LatLng HAMBURG = new LatLng(53.558, 9.927);
+	static final LatLng KIEL = new LatLng(53.551, 9.993);
 	
 	@Override  
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,  Bundle savedInstanceState) {  
@@ -51,6 +57,18 @@ public class StoreDetailsFragment extends Fragment {
 			
 			TextView address = (TextView)rootView.findViewById(R.id.address);
 			address.setText(store.address);
+			
+			Button showMap = (Button)rootView.findViewById(R.id.showMap);
+			showMap.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					Bundle fragArgs = new Bundle();
+//					fragArgs.putInt(Instrument.TAGS.STOREID, store.id);
+					MainActivity activity = (MainActivity)getActivity();
+					activity.showMapFragment(fragArgs);
+				}
+			});
 			
 //			Will be updated after instruments response handled
 			instrumentsCount = (TextView)rootView.findViewById(R.id.instrumentsCount);
