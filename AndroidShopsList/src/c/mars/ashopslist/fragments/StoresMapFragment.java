@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -107,14 +108,21 @@ public class StoresMapFragment extends Fragment {
 	}
 
 	@Override
-	public void onDestroyView() {
-		super.onDestroyView();
-//		if (map != null) {
-//			MainActivity activity = (MainActivity)getActivity();
-//			FragmentManager fragManager = activity.getSupportFragmentManager();
-//			fragManager.beginTransaction()
-//			.remove(fragManager.findFragmentById(R.id.listFragment)).commit();
-//			map = null;
-//		}
+	public void onDestroyView() 
+	{
+		super.onDestroyView(); 
+		Fragment fragment = (getFragmentManager().findFragmentById(R.id.map));  
+		FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+		ft.remove(fragment);
+		ft.commit();
 	}
+
+	@Override
+	public void onPause(){
+		super.onPause();
+		if(map != null) {   
+			map = null;
+		}
+	}
+	
 }
