@@ -49,6 +49,8 @@ public class StoresListFragment extends ListFragment {
 			adapter.addAll(stores);
 		}
 		
+		MainActivity activity = (MainActivity)getActivity();
+		activity.setStores(stores);
 		adapter.notifyDataSetChanged();
 	}
 	

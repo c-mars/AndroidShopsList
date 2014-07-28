@@ -1,5 +1,14 @@
 package c.mars.ashopslist.fragments;
 
+import java.util.ArrayList;
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import c.mars.androidshopslist.MainActivity;
 import c.mars.androidshopslist.R;
 import c.mars.ashopslist.models.Store;
@@ -7,18 +16,9 @@ import c.mars.ashopslist.models.Store;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-import android.support.v4.app.FragmentManager;
-import android.content.Context;
-import android.location.Location;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 
 public class StoresMapFragment extends Fragment {
 
@@ -52,13 +52,42 @@ public class StoresMapFragment extends Fragment {
 	private void setUpMap() {
 		map.setMyLocationEnabled(true);
 		
+		LatLng mainStoreLocation = null;
+		
 		Bundle args = getArguments();
 		if (args != null && args.containsKey(Store.TAGS.STORE)) {
 			Store store = args.getParcelable(Store.TAGS.STORE);
-			Location location = store.location;
+			mainStoreLocation = store.location;
 			
-			map.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title(store.name).snippet(store.address));
-			map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 12.0f));
+			map.addMarker(new MarkerOptions()
+			.position(mainStoreLocation)
+			.title(store.name)
+			.snippet(store.address)
+			.icon(BitmapDescriptorFactory
+		              .fromResource(R.drawable.guitar_big)));
+		}
+		
+		if (args != null && args.containsKey(Store.TAGS.ALL_STORES)) {
+			ArrayList<Store> stores = args.getParcelableArrayList(Store.TAGS.ALL_STORES);
+			for (Store store : stores) {
+				LatLng location = store.location;
+				
+//				Don't override main location
+				if (mainStoreLocation == null || !location.equals(mainStoreLocation)) {
+				
+					map.addMarker(new MarkerOptions()
+					.position(location)
+					.title(store.name)
+					.snippet(store.address)
+					.icon(BitmapDescriptorFactory
+							.fromResource(R.drawable.guitar_small)));
+				}
+			}
+		}
+		
+//		Zoom to current store
+		if (mainStoreLocation != null) {
+			map.animateCamera(CameraUpdateFactory.newLatLngZoom(mainStoreLocation, 12.0f));
 		}
 	}
 
@@ -77,9 +106,9 @@ public class StoresMapFragment extends Fragment {
 		}
 	}
 
-//	@Override
-//	public void onDestroyView() {
-//		super.onDestroyView();
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
 //		if (map != null) {
 //			MainActivity activity = (MainActivity)getActivity();
 //			FragmentManager fragManager = activity.getSupportFragmentManager();
@@ -87,5 +116,5 @@ public class StoresMapFragment extends Fragment {
 //			.remove(fragManager.findFragmentById(R.id.listFragment)).commit();
 //			map = null;
 //		}
-//	}
+	}
 }

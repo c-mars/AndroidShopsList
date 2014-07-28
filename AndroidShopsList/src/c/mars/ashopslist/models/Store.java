@@ -3,17 +3,17 @@ package c.mars.ashopslist.models;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import c.mars.androidshopslist.Globals;
-import android.location.Location;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import com.google.android.gms.maps.model.LatLng;
 
 public class Store implements Parcelable {
 	public Integer id;
 	public String name;
 	public String address;
 	public String phone;
-	public Location location = new Location(Globals.API_URL);
+	public LatLng location;
 	
 	public Store (String name, String address, String phone) {
 		this.name = name;
@@ -25,7 +25,7 @@ public class Store implements Parcelable {
 		this.location = null;
 	}
 	
-	public Store (Integer id, String name, String address, String phone, Location location) {
+	public Store (Integer id, String name, String address, String phone, LatLng location) {
 		this(name, address, phone);
 		this.id = id;
 		this.location = location;
@@ -41,6 +41,7 @@ public class Store implements Parcelable {
 		public static final String LONGITUDE = "longitude";
 		
 		public static final String STORE = "store";
+		public static final String ALL_STORES = "allStores";
 	}
 	
 //	This constructor can fail with JSONException that must be handled somewhere in calling code
@@ -50,10 +51,9 @@ public class Store implements Parcelable {
 		phone = jsonStore.getString(TAGS.PHONE);
 		address = jsonStore.getString(TAGS.ADDRESS);
 		JSONObject jsonLocation = jsonStore.getJSONObject(TAGS.LOCATION);
-		Double latitude = jsonLocation.getDouble(TAGS.LATITUDE);
-		Double longitude = jsonLocation.getDouble(TAGS.LONGITUDE);
-		location.setLatitude(latitude);
-		location.setLongitude(longitude);
+		Double latitude = jsonLocation.getDouble(TAGS.LATITUDE) / 1000000;
+		Double longitude = jsonLocation.getDouble(TAGS.LONGITUDE) / 1000000;
+		location = new LatLng(latitude, longitude);
 	}
 
 	public Store(Parcel in){
@@ -66,8 +66,7 @@ public class Store implements Parcelable {
         name = data[1];
 		phone = data[2];
 		address = data[3];
-		location.setLatitude(Double.parseDouble(data[4]));
-		location.setLongitude(Double.parseDouble(data[5]));
+		location = new LatLng(Double.parseDouble(data[4]), Double.parseDouble(data[5]));
     }
 	
 	@Override
@@ -83,8 +82,8 @@ public class Store implements Parcelable {
 				name,
 				phone,
 				address,
-				Double.toString(location.getLatitude()),
-				Double.toString(location.getLongitude()) 
+				Double.toString(location.latitude),
+				Double.toString(location.longitude) 
 				});
 	}
 }

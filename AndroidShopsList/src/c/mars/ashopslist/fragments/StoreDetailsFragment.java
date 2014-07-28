@@ -1,8 +1,5 @@
 package c.mars.ashopslist.fragments;
 
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.model.LatLng;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;

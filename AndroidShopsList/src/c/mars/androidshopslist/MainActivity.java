@@ -1,5 +1,7 @@
 package c.mars.androidshopslist;
 
+import java.util.ArrayList;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,6 +14,7 @@ import c.mars.ashopslist.fragments.InstrumentsListFragment;
 import c.mars.ashopslist.fragments.StoresMapFragment;
 import c.mars.ashopslist.fragments.StoreDetailsFragment;
 import c.mars.ashopslist.fragments.StoresListFragment;
+import c.mars.ashopslist.models.Store;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -23,6 +26,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 
 public class MainActivity extends ActionBarActivity {
+	
+	private ArrayList<Store> stores;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +80,7 @@ public class MainActivity extends ActionBarActivity {
     
     public void showMapFragment(Bundle args) {
     	StoresMapFragment mapFragment = new StoresMapFragment();
+    	args.putParcelableArrayList(Store.TAGS.ALL_STORES, stores);
 		mapFragment.setArguments(args);
     	FragmentManager fragmentManager = getSupportFragmentManager();
 	    fragmentManager.beginTransaction()
@@ -88,5 +94,9 @@ public class MainActivity extends ActionBarActivity {
     		StoreDetailsFragment storeDetailsFragment = (StoreDetailsFragment)fragment;
     		storeDetailsFragment.updateInstrumentsCount(count);
     	}
+    }
+    
+    public void setStores(ArrayList<Store> stores) {
+    	this.stores = stores;
     }
 }
