@@ -12,20 +12,20 @@
         style="@style/ListItem"
         android:text="@string/headerInsrumentName" />
 
-    <TextView 
+        <TextView 
         android:id="@+id/quantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         style="@style/ListItem"
         android:text="@string/headerInsrumentPrice" />
-    
-    <TextView 
+    	
+        <TextView 
         android:id="@+id/price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@id/quantity"
         style="@style/ListItem"
         android:text="@string/headerInsrumentQuantity" />
-
+        
 </RelativeLayout>

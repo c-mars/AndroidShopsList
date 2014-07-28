@@ -20,10 +20,9 @@ import android.widget.RelativeLayout;
 
 public class StoresMapFragment extends Fragment {
 
-	private static View view;
-	private static GoogleMap map;
-	private static Double latitude, longitude;
-	private static Context context;
+	private View view;
+	private GoogleMap map;
+	private Double latitude, longitude;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,9 +40,9 @@ public class StoresMapFragment extends Fragment {
 		return view;
 	}
 
-	public static void setUpMapIfNeeded() {
+	public void setUpMapIfNeeded() {
 		if (map == null) {
-			MainActivity activity = (MainActivity)context;
+			MainActivity activity = (MainActivity)getActivity();
 			FragmentManager fragManager = activity.getSupportFragmentManager();
 			map = ((SupportMapFragment) fragManager.findFragmentById(R.id.map)).getMap();
 			if (map != null)
@@ -51,7 +50,7 @@ public class StoresMapFragment extends Fragment {
 		}
 	}
 
-	private static void setUpMap() {
+	private void setUpMap() {
 		map.setMyLocationEnabled(true);
 		map.addMarker(new MarkerOptions().position(new LatLng(latitude, longitude)).title("My Home").snippet("Home Address"));
 		map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude,
@@ -60,7 +59,7 @@ public class StoresMapFragment extends Fragment {
 
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
-		context = getActivity();
+		
 		if (map != null)
 			setUpMap();
 
@@ -73,15 +72,15 @@ public class StoresMapFragment extends Fragment {
 		}
 	}
 
-	@Override
-	public void onDestroyView() {
-		super.onDestroyView();
-		if (map != null) {
-			MainActivity activity = (MainActivity)getActivity();
-			FragmentManager fragManager = activity.getSupportFragmentManager();
-			fragManager.beginTransaction()
-			.remove(fragManager.findFragmentById(R.id.listFragment)).commit();
-			map = null;
-		}
-}
+//	@Override
+//	public void onDestroyView() {
+//		super.onDestroyView();
+//		if (map != null) {
+//			MainActivity activity = (MainActivity)getActivity();
+//			FragmentManager fragManager = activity.getSupportFragmentManager();
+//			fragManager.beginTransaction()
+//			.remove(fragManager.findFragmentById(R.id.listFragment)).commit();
+//			map = null;
+//		}
+//	}
 }
