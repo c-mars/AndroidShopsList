@@ -25,6 +25,7 @@ public class StoreDetailsFragment extends Fragment {
 	
 	private Store store;
 	private TextView instrumentsCount;
+	private boolean showMapEnabled = true;
 	
 	@Override  
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,  Bundle savedInstanceState) {  
@@ -53,15 +54,25 @@ public class StoreDetailsFragment extends Fragment {
 			TextView address = (TextView)rootView.findViewById(R.id.address);
 			address.setText(store.address);
 			
-			Button showMap = (Button)rootView.findViewById(R.id.showMap);
+			final Button showMap = (Button)rootView.findViewById(R.id.showMap);
 			showMap.setOnClickListener(new OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {
-					Bundle fragArgs = new Bundle();
-//					fragArgs.putInt(Instrument.TAGS.STOREID, store.id);
+					
 					MainActivity activity = (MainActivity)getActivity();
-					activity.showMapFragment(fragArgs);
+					
+					if (showMapEnabled) {
+						Bundle fragArgs = new Bundle();
+						fragArgs.putParcelable(Store.TAGS.STORE, store);
+						activity.showMapFragment(fragArgs);
+						showMap.setText(getString(R.string.hideMap));
+					} else {
+						showInstrumetsListFragment();
+						showMap.setText(getString(R.string.showMap));
+					}
+					
+					showMapEnabled = !showMapEnabled;
 				}
 			});
 			
@@ -69,16 +80,20 @@ public class StoreDetailsFragment extends Fragment {
 			instrumentsCount = (TextView)rootView.findViewById(R.id.instrumentsCount);
 			instrumentsCount.setText("");
 			
-			Bundle fragArgs = new Bundle();
-			fragArgs.putInt(Instrument.TAGS.STOREID, store.id);
-			MainActivity activity = (MainActivity)getActivity();
-			activity.showInstrumentsListFragment(fragArgs);
+			showInstrumetsListFragment();
 		} else {
 			Toast.makeText(getActivity(), getString(R.string.storeDetailsReadError), Toast.LENGTH_SHORT).show();;
 		}
 		
 		return rootView;  
 	} 
+	
+	private void showInstrumetsListFragment() {
+		Bundle fragArgs = new Bundle();
+		fragArgs.putInt(Instrument.TAGS.STOREID, store.id);
+		MainActivity activity = (MainActivity)getActivity();
+		activity.showInstrumentsListFragment(fragArgs);
+	}
 	
 	public void updateInstrumentsCount(Integer count) {
 		if (instrumentsCount != null) {

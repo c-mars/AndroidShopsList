@@ -2,6 +2,7 @@ package c.mars.ashopslist.fragments;
 
 import c.mars.androidshopslist.MainActivity;
 import c.mars.androidshopslist.R;
+import c.mars.ashopslist.models.Store;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -11,6 +12,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import android.support.v4.app.FragmentManager;
 import android.content.Context;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -22,7 +24,6 @@ public class StoresMapFragment extends Fragment {
 
 	private View view;
 	private GoogleMap map;
-	private Double latitude, longitude;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,8 +33,6 @@ public class StoresMapFragment extends Fragment {
 		}
 
 		view = (RelativeLayout) inflater.inflate(R.layout.fragment_map, container, false);
-		latitude = 26.78;
-		longitude = 72.56;
 
 		setUpMapIfNeeded();
 
@@ -52,9 +51,15 @@ public class StoresMapFragment extends Fragment {
 
 	private void setUpMap() {
 		map.setMyLocationEnabled(true);
-		map.addMarker(new MarkerOptions().position(new LatLng(latitude, longitude)).title("My Home").snippet("Home Address"));
-		map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude,
-				longitude), 12.0f));
+		
+		Bundle args = getArguments();
+		if (args != null && args.containsKey(Store.TAGS.STORE)) {
+			Store store = args.getParcelable(Store.TAGS.STORE);
+			Location location = store.location;
+			
+			map.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title(store.name).snippet(store.address));
+			map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 12.0f));
+		}
 	}
 
 	@Override

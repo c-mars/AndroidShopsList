@@ -9,6 +9,7 @@
 	<string name="phoneLabel">call:</string>
 	<string name="address">Address</string>
 	<string name="showMap">Show map</string>
+	<string name="hideMap">Hide map</string>
 	
 	<string name="headerInsrumentName">Instrument</string>
 	<string name="headerInsrumentPrice">Price</string>
