@@ -9,20 +9,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import c.mars.androidshopslist.R;
 import c.mars.ashopslist.fragments.InstrumentsListFragment;
-import c.mars.ashopslist.fragments.StoresMapFragment;
 import c.mars.ashopslist.fragments.StoreDetailsFragment;
 import c.mars.ashopslist.fragments.StoresListFragment;
+import c.mars.ashopslist.fragments.StoresMapFragment;
 import c.mars.ashopslist.models.Store;
-
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 
 public class MainActivity extends ActionBarActivity {
